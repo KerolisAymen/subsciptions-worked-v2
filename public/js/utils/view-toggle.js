@@ -85,7 +85,7 @@ window.ViewToggle = (function() {
     });
 
     // Add window resize listener to handle view changes on screen size change
-    window.addEventListener('resize', debounce(handleResize, 250));
+    // window.addEventListener('resize', debounce(handleResize, 250));
   }
 
   // Process table when data is ready (has rows with data)
