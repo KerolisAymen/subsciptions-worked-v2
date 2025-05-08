@@ -1,0 +1,34 @@
+/* Basic auth element visibility control */
+.auth-hidden, .no-auth {
+  display: none;
+}
+
+/* Fix for navbar authentication items */
+.navbar-nav.auth-hidden, .navbar-nav.no-auth {
+  align-items: center;
+}
+
+/* Ensure app container has minimum height */
+#app {
+  min-height: 70vh;
+}
+
+/* Simple hover effect for buttons */
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Simple z-index fixes for modals */
+.modal {
+  z-index: 1050;
+}
+
+.modal-backdrop {
+  z-index: 1040;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav.auth-hidden, .navbar-nav.no-auth {
+    align-items: flex-start;
+  }
+}

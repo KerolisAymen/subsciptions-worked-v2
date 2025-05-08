@@ -1,0 +1,786 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-card {
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.project-card .card-footer {
+  background-color: transparent;
+  border-top: none;
+}
+
+.auth-hidden, .no-auth {
+  display: none;
+}
+
+#loading-overlay {
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1100;
+  backdrop-filter: blur(3px);
+}
+
+.badge-role {
+  font-size: 0.7rem;
+  padding: 0.35em 0.65em;
+}
+
+.role-owner {
+  background-color: #dc3545;
+}
+
+.role-admin {
+  background-color: #6f42c1;
+}
+
+.role-collector {
+  background-color: #0d6efd;
+}
+
+/* Responsive table enhancements */
+@media (max-width: 767.98px) {
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.action-buttons .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Payment status indicators */
+.status-paid {
+  color: #198754;
+}
+
+.status-partial {
+  color: #fd7e14;
+}
+
+.status-unpaid {
+  color: #dc3545;
+}
+
+/* Tab transitions */
+.tab-pane {
+  transition: all 0.3s ease;
+}
+
+/* Toast styling */
+.toast {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.toast-header {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Chart container */
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* تحديثات لدعم اللغة العربية واتجاه RTL */
+.dropdown-menu {
+  text-align: right;
+}
+
+.navbar-nav {
+  padding-right: 0;
+}
+
+.ms-auto {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+.me-auto {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+.me-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0 !important;
+}
+
+.ms-2 {
+  margin-right: 0.5rem !important;
+  margin-left: 0 !important;
+}
+
+.ps-3 {
+  padding-right: 1rem !important;
+  padding-left: 0 !important;
+}
+
+.pe-3 {
+  padding-left: 1rem !important;
+  padding-right: 0 !important;
+}
+
+.text-start {
+  text-align: right !important;
+}
+
+.text-end {
+  text-align: left !important;
+}
+
+/* ألوان وأنماط محسنة */
+:root {
+  --primary-color: #2c6fdb;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --background-color: #f5f7fa;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 0.5rem;
+}
+
+/* تحسينات بصرية عامة */
+.card {
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--hover-shadow);
+}
+
+.btn {
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(44, 111, 219, 0.3);
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* تأثيرات حركية للعناصر */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* تحسينات للجداول */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.table th {
+  background-color: rgba(44, 111, 219, 0.1);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.table td, .table th {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(44, 111, 219, 0.05);
+}
+
+/* تحسينات للنماذج */
+.form-control, .form-select {
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(44, 111, 219, 0.25);
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* نمط البطاقة المحسن */
+.project-card {
+  transition: all 0.3s ease;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.project-card .card-body {
+  padding: 1.5rem;
+}
+
+.project-card .card-footer {
+  background-color: transparent;
+  border-top: 1px solid #f0f0f0;
+  padding: 1rem 1.5rem;
+}
+
+/* مؤشرات للحالة */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-paid {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+}
+
+.status-partial {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: var(--warning-color);
+}
+
+.status-unpaid {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger-color);
+}
+
+/* شريط التحميل */
+.progress {
+  height: 0.75rem;
+  border-radius: 1rem;
+  background-color: #e9ecef;
+}
+
+.progress-bar {
+  border-radius: 1rem;
+}
+
+/* تخصيص التعليمات */
+.tab-content {
+  padding: 1.5rem 0;
+}
+
+/* شاشات العرض المتوافقة */
+@media (max-width: 767.98px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .btn {
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* القوائم المنسدلة */
+.dropdown-menu {
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: var(--card-shadow);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.5rem;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(44, 111, 219, 0.05);
+}
+
+/* تخصيص في حالة إخفاء العناصر */
+.auth-hidden, .no-auth {
+  display: none;
+}
+
+/* أسلوب الدور */
+.badge {
+  padding: 0.5em 0.75em;
+  border-radius: 2rem;
+  font-weight: 500;
+}
+
+.role-owner {
+  background-color: var(--danger-color);
+}
+
+.role-admin {
+  background-color: #6f42c1;
+}
+
+.role-collector {
+  background-color: var(--primary-color);
+}
+
+/* تحسينات قسم التقارير */
+.report-card {
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.report-card .card-title {
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* تحسين عرض الأرقام في التقارير */
+.stats-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2c3e50;
+  display: block;
+  line-height: 1.2;
+}
+
+.stats-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  display: block;
+}
+
+/* تنسيق جداول التقارير */
+.report-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.report-table thead th {
+  background-color: #f8f9fa;
+  border-top: none;
+  border-bottom: 2px solid #dee2e6;
+  color: #495057;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.report-table tbody td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+}
+
+/* تخصيص تقدم التحصيل */
+.progress-wrapper {
+  margin-bottom: 1rem;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.progress-label span:last-child {
+  font-weight: 600;
+}
+
+/* تحسين عرض الرسوم البيانية */
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-left: 0.25rem;
+}
+
+/* تحسينات إضافية للغة العربية */
+input, textarea, select, .form-control, .form-select {
+  text-align: right;
+}
+
+.dropdown-menu {
+  text-align: right;
+}
+
+/* تحسين الأيقونات في اللغة العربية */
+.bi {
+  margin-left: 0.25rem;
+  margin-right: 0;
+}
+
+/* تخصيص التقارير للشاشات المختلفة */
+@media (max-width: 767.98px) {
+  .stats-number {
+    font-size: 1.5rem;
+  }
+  
+  .chart-container {
+    height: 250px;
+  }
+  
+  .report-table thead th,
+  .report-table tbody td {
+    padding: 0.5rem;
+  }
+}
+
+/* Report Cards Styling */
+.report-card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: all 0.3s ease;
+}
+
+.report-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.stats-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0d6efd;
+  margin-top: 0.5rem;
+}
+
+.chart-container {
+  position: relative;
+  margin: 0 auto;
+  height: 250px;
+}
+
+/* Progress bar colors */
+.progress-bar-danger {
+  background-color: #dc3545;
+}
+
+.progress-bar-warning {
+  background-color: #ffc107;
+}
+
+.progress-bar-success {
+  background-color: #198754;
+}
+
+/* Table improvements */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Style for sortable table headers */
+th[data-sortable] {
+  cursor: pointer;
+  position: relative;
+}
+
+th[data-sortable]:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Subtle hover effect */
+}
+
+th[data-sortable] .sort-icon {
+  /* position: absolute; */ /* Optional: absolute positioning */
+  /* right: 0.5rem; */
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
+  display: inline-block; /* Keep icon inline */
+  margin-left: 0.3em; /* Space between text and icon */
+  color: #aaa; /* Default icon color */
+  font-size: 0.8em;
+}
+
+th[data-sortable]:hover .sort-icon {
+  color: #555; /* Darker icon on hover */
+}
+
+.table-active {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+/* Numbering column for tables */
+.table-number {
+  width: 1%;
+  min-width: 36px;
+  max-width: 48px;
+  text-align: center;
+  color: #888;
+  font-weight: 600;
+}
+
+/* Optional: Use CSS counters for auto-numbering if desired */
+/* 
+.table-numbering {
+  counter-reset: rowNumber;
+}
+.table-numbering tbody tr {
+  counter-increment: rowNumber;
+}
+.table-numbering tbody tr td.table-number::before {
+  content: counter(rowNumber);
+}
+*/
+
+/* Toggle View Styles - Table/Card toggle */
+.toggle-view-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.view-toggle-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Card View Styling */
+.card-view-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card-view-container .card {
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-view-container .card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow);
+}
+
+.card-view-container .card-title {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.card-view-container dl.row dt {
+  font-weight: 600;
+  color: #495057;
+}
+
+.card-view-container .card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.card-view-container .card-actions .btn {
+  white-space: nowrap;
+}
+
+.card-view-container .badge {
+  z-index: 5;
+}
+
+/* Responsive adjustments for card view */
+@media (max-width: 767.98px) {
+  .card-view-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-view-container .card-body {
+    padding: 1rem;
+  }
+  
+  .card-view-container dl.row {
+    margin-bottom: 0;
+  }
+  
+  .card-view-container dl.row dt,
+  .card-view-container dl.row dd {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .card-view-container dl.row dt {
+    background-color: rgba(0,0,0,0.03);
+    border-radius: 4px;
+  }
+}
+
+/* View Toggle Styles (Table/Card View) */
+.toggle-view-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.view-toggle-btn {
+  border-radius: var(--border-radius, 0.5rem);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.view-toggle-btn.active {
+  background-color: var(--primary-color, #0d6efd);
+  color: white;
+  border-color: var(--primary-color, #0d6efd);
+}
+
+.card-view-container {
+  animation: fadeIn 0.3s ease;
+}
+
+.card-view-container .card {
+  border-radius: var(--border-radius, 0.5rem);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.card-view-container .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-view-container .card-title {
+  color: var(--primary-color, #0d6efd);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.card-view-container dl.row {
+  margin-bottom: 0;
+}
+
+.card-view-container dt {
+  color: #555;
+  font-weight: 600;
+}
+
+.card-view-container .card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.card-view-container .card-actions .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments for card view */
+@media (max-width: 767.98px) {
+  .toggle-view-controls {
+    justify-content: center;
+  }
+  
+  .card-view-container {
+    padding: 0 0.5rem;
+  }
+  
+  .card-view-container .card-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* RTL specific adjustments for card view */
+.card-view-container .card-body {
+  text-align: right;
+}
