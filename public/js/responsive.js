@@ -66,24 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // التنبيهات المتكيفة
-  function adjustToasts() {
-    const toastContainer = document.querySelector('.toast-container');
-    if (toastContainer) {
-      if (window.innerWidth < 576) {
-        toastContainer.classList.replace('bottom-0', 'top-0');
-        toastContainer.classList.replace('end-0', 'start-50');
-        toastContainer.classList.add('translate-middle-x');
-      } else {
-        toastContainer.classList.replace('top-0', 'bottom-0');
-        toastContainer.classList.replace('start-50', 'end-0');
-        toastContainer.classList.remove('translate-middle-x');
-      }
-    }
-  }
-  
-  adjustToasts();
-  window.addEventListener('resize', adjustToasts);
+
   
   // زر العودة للأعلى
   const backToTopBtn = document.createElement('button');

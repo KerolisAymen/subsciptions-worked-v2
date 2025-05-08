@@ -203,7 +203,7 @@ window.ViewToggle = (function() {
       let cardContent = `
         <div class="card-body">
           <h5 class="card-title">${row.cells[1]?.textContent.trim() || 'Item'}</h5>
-          <dl class="row mb-0">
+          <div class="key-value-content">
       `;
       
       // Add data fields - skip first column (numbering) and last column (actions)
@@ -215,19 +215,21 @@ window.ViewToggle = (function() {
         const header = headers[i - 1] || `Field ${i}`;
         const content = row.cells[i].innerHTML;
         
-        // Add to card
+        // Add key-value row with Bootstrap classes
         cardContent += `
-          <dt class="col-sm-4">${header}</dt>
-          <dd class="col-sm-8">${content}</dd>
+          <div class="key-value-row">
+            <span class="key">${header}</span>
+            <span class="value">${content}</span>
+          </div>
         `;
       }
       
-      cardContent += '</dl>';
+      cardContent += '</div>';
       
       // Add action buttons if they exist in the last column
       const actionsCell = row.cells[row.cells.length - 1];
       if (actionsCell && actionsCell.querySelectorAll('button, a').length > 0) {
-        cardContent += '<div class="card-actions mt-3">';
+        cardContent += '<div class="card-actions">';
         // Clone buttons to preserve event listeners
         actionsCell.querySelectorAll('button, a').forEach(btn => {
           const clonedBtn = btn.cloneNode(true);

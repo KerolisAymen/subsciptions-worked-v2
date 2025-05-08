@@ -784,3 +784,102 @@ th[data-sortable]:hover .sort-icon {
 .card-view-container .card-body {
   text-align: right;
 }
+
+/* Card View Container Styling */
+.card-view-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card-view-container .card {
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: var(--border-radius, 0.5rem);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card-view-container .card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.card-view-container .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color, #0d6efd);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-view-container .card-body {
+  padding: 1rem;
+  text-align: right;
+}
+
+/* Key-Value Styling for Card View */
+.card-view-container .key-value-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  align-items: baseline;
+  width: 100%;
+}
+
+.card-view-container .key-value-row:last-child {
+  border-bottom: none;
+}
+
+.card-view-container .key-value-row .key {
+  font-weight: 600;
+  color: #555;
+  flex: 0 0 auto;
+  margin-left: 0.5rem;
+}
+
+.card-view-container .key-value-row .value {
+  text-align: left;
+  color: #212529;
+}
+
+/* Card Actions Styling */
+.card-view-container .card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-view-container .card-actions .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Remove redundant/duplicate card view styles */
+
+/* Overwrite existing responsive styles to maintain key-value display on mobile */
+@media (max-width: 767.98px) {
+  .card-view-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .card-view-container .card-body {
+    padding: 0.75rem;
+  }
+  
+  .card-view-container .card-title {
+    font-size: 1rem;
+  }
+  
+  /* Maintain key-value layout even on small screens */
+  .card-view-container .key-value-row {
+    display: flex;
+    justify-content: space-between;
+  }
+}
