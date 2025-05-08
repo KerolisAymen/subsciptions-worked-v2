@@ -768,7 +768,7 @@ class Router {
       
       // Initialize tabs in parallel to improve performance
       const initPromises = [
-        this.initTripsTab(projectId, userRole),
+        this.initTripsTab(projectId, userRole , summary),
         this.initMembersTab(projectId, userRole),
         this.initReportsTab(projectId, summary)
       ];
@@ -798,7 +798,7 @@ class Router {
     }
   }
 
-  async initTripsTab(projectId, userRole) {
+  async initTripsTab(projectId, userRole,summary) {
     try {
       const response = await api.getProjectTrips(projectId);
       const trips = response.data.trips;
@@ -814,9 +814,10 @@ class Router {
         } else {
           tripsListContainer.innerHTML = '';
           trips.forEach((trip, idx) => {
-            // Calculate trip progress (dummy data for now, will be replaced by real data)
-            const expected = 0;
-            const collected = 0;
+
+            const expected = summary.trips?.[idx]?.expected || 0;
+            const collected = summary.trips?.[idx]?.collected || 0;
+
             const remaining = expected - collected;
             const progress = expected > 0 ? Math.round((collected / expected) * 100) : 0;
             
