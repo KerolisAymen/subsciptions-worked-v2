@@ -302,16 +302,9 @@ window.ViewToggle = (function() {
     const tableContainer = table?.closest('.table-responsive');
     const cardContainer = document.getElementById(`card-container-${tableId}`);
     const toggleControls = tableContainer?.previousElementSibling;
+    
     if (!table || !tableContainer || !cardContainer || !toggleControls) return;
-
-    // Determine current view
-    const isCurrentlyCard = !cardContainer.classList.contains('d-none');
-    const isCurrentlyTable = !tableContainer.classList.contains('d-none');
-    if ((viewMode === 'card' && isCurrentlyCard) || (viewMode === 'table' && isCurrentlyTable)) {
-      // Already in desired view, do nothing
-      return;
-    }
-
+    
     // Update button states
     toggleControls.querySelectorAll('.view-toggle-btn').forEach(btn => {
       if (btn.dataset.view === viewMode) {
@@ -320,67 +313,63 @@ window.ViewToggle = (function() {
         btn.classList.remove('active');
       }
     });
-
-    // Toggle visibility and only regenerate cards if switching to card view
+    
+    // Toggle visibility
     if (viewMode === 'table') {
       tableContainer.classList.remove('d-none');
       cardContainer.classList.add('d-none');
     } else {
       tableContainer.classList.add('d-none');
       cardContainer.classList.remove('d-none');
-      // Only generate cards if not already in card view
-      if (!isCurrentlyCard) {
-        generateCards(table, cardContainer);
-      }
+      
+      // Refresh cards in case table data has changed
+      generateCards(table, cardContainer);
     }
-
+    
     // Store the current view preference in memory only if user manually selected it
     if (isUserAction) {
       viewPreferences[tableId] = viewMode;
     }
   }
-
+  
   // Handle window resize
   function handleResize() {
     document.querySelectorAll('.toggle-view-table').forEach(table => {
       const tableId = table.id;
       const userPreference = viewPreferences[tableId];
       const tableContainer = table.closest('.table-responsive');
-      const cardContainer = document.getElementById(`card-container-${tableId}`);
-      if (!userPreference && tableContainer && cardContainer) {
+      
+      if (!userPreference && tableContainer) {
+        // Only auto-switch if user hasn't set a preference during this session
         const isMobile = window.innerWidth < options.mobileBreakpoint;
         const isTableOverflowing = checkTableOverflow(table, tableContainer);
-        const isCurrentlyCard = !cardContainer.classList.contains('d-none');
-        const isCurrentlyTable = !tableContainer.classList.contains('d-none');
-        if (isMobile && isTableOverflowing && !isCurrentlyCard) {
+        
+        if (isMobile && isTableOverflowing) {
           setView(tableId, 'card');
-        } else if ((!isMobile || !isTableOverflowing) && !isCurrentlyTable) {
+        } else {
           setView(tableId, 'table');
         }
       }
     });
   }
-
+  
   // Check if a table has been updated with new data
   function refreshTable(tableId) {
     const table = document.getElementById(tableId);
     const tableContainer = table?.closest('.table-responsive');
     const cardContainer = document.getElementById(`card-container-${tableId}`);
+    
     if (table && tableContainer && cardContainer) {
-      // Regenerate cards from the updated table data only if in card view
-      if (!cardContainer.classList.contains('d-none')) {
-        generateCards(table, cardContainer);
-      }
+      // Regenerate cards from the updated table data
+      generateCards(table, cardContainer);
+      
       // Re-check if view mode should change (only if no user preference)
       if (!viewPreferences[tableId]) {
         const isMobile = window.innerWidth < options.mobileBreakpoint;
         const isTableOverflowing = checkTableOverflow(table, tableContainer);
-        const isCurrentlyCard = !cardContainer.classList.contains('d-none');
-        const isCurrentlyTable = !tableContainer.classList.contains('d-none');
-        if (isMobile && isTableOverflowing && !isCurrentlyCard) {
+        
+        if (isMobile && isTableOverflowing) {
           setView(tableId, 'card', false);
-        } else if ((!isMobile || !isTableOverflowing) && !isCurrentlyTable) {
-          setView(tableId, 'table', false);
         }
       }
     }
