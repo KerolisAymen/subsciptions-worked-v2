@@ -883,3 +883,30 @@ th[data-sortable]:hover .sort-icon {
     justify-content: space-between;
   }
 }
+
+/* Breadcrumb styles */
+#breadcrumbs {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.85rem;
+}
+
+#breadcrumbs .breadcrumb {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#breadcrumbs .breadcrumb-item + .breadcrumb-item::before {
+  padding-right: 0.3rem;
+  padding-left: 0.3rem;
+}
+
+/* Add a class that can hide breadcrumbs when needed */
+.breadcrumbs-hidden {
+  display: none !important;
+}
+
+/* Class for more compact page headers */
+.compact-header {
+  margin-bottom: 1rem;
+}

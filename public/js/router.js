@@ -24,11 +24,18 @@ class Router {
     this.participantSortDirection = 'asc';
     this.fullParticipantsData = []; // Store the full dataset
   }
-
   // This method is called from app.js
   initRouting() {
     // Handle browser back/forward navigation
     window.addEventListener('popstate', () => this.handleRoute());
+    
+    // Ensure SEO is updated when route changes
+    window.addEventListener('routeChanged', (event) => {
+      if (window.SEOUtils && event.detail) {
+        const { title, description, path } = event.detail;
+        window.SEOUtils.updateMetaTags(title, description, path);
+      }
+    });
     
     // Handle link clicks (prevent default behavior)
     document.body.addEventListener('click', e => {
@@ -48,6 +55,93 @@ class Router {
     
     // Initial routing
     this.handleRoute();
+    
+    // Add event listener for dynamic content loading
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize SEO for the current page
+      this.updateSEOMetadata();
+    });
+  }
+  
+  // New method to update SEO metadata for the current page
+  updateSEOMetadata() {
+    const path = window.location.pathname;
+    let title = 'نظام إدارة مصاريف الرحلات';
+    let description = 'طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
+    
+    // Set page-specific metadata
+    switch (true) {
+      case path === '/':
+        title = 'الرئيسية';
+        description = 'نظام إدارة مصاريف الرحلات - طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
+        this.hideBreadcrumbs(); // Hide breadcrumbs on home page
+        break;
+      case path === '/login':
+        title = 'تسجيل الدخول';
+        description = 'تسجيل الدخول إلى حسابك في نظام إدارة مصاريف الرحلات';
+        this.hideBreadcrumbs(); // Hide breadcrumbs on login page
+        break;
+      case path === '/signup':
+        title = 'إنشاء حساب';
+        description = 'إنشاء حساب جديد في نظام إدارة مصاريف الرحلات للاستفادة من خدماتنا';
+        this.hideBreadcrumbs(); // Hide breadcrumbs on signup page
+        break;
+      case path === '/about':
+        title = 'عن النظام';
+        description = 'تعرف على المزيد عن نظام إدارة مصاريف الرحلات وكيفية عمله';
+        break;
+      case path === '/contact':
+        title = 'اتصل بنا';
+        description = 'تواصل مع فريق دعم نظام إدارة مصاريف الرحلات للاستفسارات والمساعدة';
+        break;
+      case path === '/privacy':
+        title = 'سياسة الخصوصية';
+        description = 'سياسة الخصوصية وشروط الاستخدام لنظام إدارة مصاريف الرحلات';
+        break;
+      case path.startsWith('/projects'):
+        title = 'مشاريعي';
+        description = 'إدارة مشاريعك ورحلاتك في نظام إدارة مصاريف الرحلات';
+        break;
+      case path.startsWith('/project/'):
+        const projectId = path.split('/')[2];
+        title = `تفاصيل المشروع ${projectId}`;
+        description = `عرض وإدارة تفاصيل المشروع ${projectId} في نظام إدارة مصاريف الرحلات`;
+        break;
+      case path.startsWith('/trip/'):
+        const tripId = path.split('/')[2];
+        title = `تفاصيل الرحلة ${tripId}`;
+        description = `عرض وإدارة تفاصيل الرحلة ${tripId}، المشاركين والمدفوعات في نظام إدارة مصاريف الرحلات`;
+        break;
+      default:
+        title = 'نظام إدارة مصاريف الرحلات';
+        description = 'طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
+    }
+    
+    // Use SEO utility functions to update metadata
+    if (window.SEO && typeof window.SEO.updateMetaTags === 'function') {
+      window.SEO.updateMetaTags(title, description, path);
+    } else {
+      // Fallback if SEO.js is not loaded
+      document.title = title + ' | نظام إدارة مصاريف الرحلات';
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', description);
+      }
+    }
+  }
+
+  // Helper method to hide breadcrumbs on selected pages
+  hideBreadcrumbs() {
+    const breadcrumbsContainer = document.getElementById('breadcrumbs');
+    if (breadcrumbsContainer) {
+      breadcrumbsContainer.classList.add('breadcrumbs-hidden');
+    }
+    
+    // Also add more top margin to the app container on pages without breadcrumbs
+    const appContainer = document.getElementById('app');
+    if (appContainer) {
+      appContainer.classList.add('mt-4');
+    }
   }
 
   // Navigate to a new path

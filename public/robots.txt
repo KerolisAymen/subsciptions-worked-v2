@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /login
+Disallow: /signup
+Disallow: /projects
+Disallow: /project/
+Disallow: /trip/
+Disallow: /verify-email/
+Disallow: /forgot-password
+Disallow: /reset-password/
+
+# Sitemap location
+Sitemap: https://yourwebsite.com/sitemap.xml
+
+# Crawl-delay directive to prevent overwhelming the server
+Crawl-delay: 10

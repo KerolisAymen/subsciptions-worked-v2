@@ -2,15 +2,21 @@
   "name": "trip-expenses-collector",
   "version": "1.0.0",
   "description": "Application to manage trip expenses and collections",
-  "main": "src/server.js",
-  "scripts": {
+  "main": "src/server.js",  "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-seo-images": "node scripts/generate-seo-images.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "setup-google": "node scripts/setup-google-integrations.js",
+    "test-seo": "node scripts/test-seo.js",
+    "test-seo-with-server": "powershell -ExecutionPolicy Bypass -File scripts/run-seo-test-with-server.ps1",
+    "seo-setup": "npm run generate-seo-images && npm run generate-sitemap"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "canvas": "^3.1.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -25,6 +31,7 @@
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
+    "jsdom": "^26.1.0",
     "nodemon": "^3.0.1"
   }
 }

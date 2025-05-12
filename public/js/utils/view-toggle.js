@@ -43,7 +43,7 @@ window.ViewToggle = (function() {
       let toggleControls = tableContainer.previousElementSibling;
       if (!toggleControls || !toggleControls.classList.contains('toggle-view-controls')) {
         toggleControls = document.createElement('div');
-        toggleControls.className = 'toggle-view-controls';
+        toggleControls.className = 'toggle-view-controls mb-2'; // Reduced margin
         tableContainer.parentNode.insertBefore(toggleControls, tableContainer);
       }
 

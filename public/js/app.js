@@ -76,6 +76,65 @@ function formatDate(dateString) {
   return i18n.formatDate(dateString);
 }
 
+// SEO Utility Functions
+const SEO = {
+  updateMetaTags: function(title, description, path) {
+    // Update document title
+    document.title = title + ' | نظام إدارة مصاريف الرحلات';
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', description);
+    }
+    
+    // Update canonical URL
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://yourwebsite.com' + path);
+    }
+    
+    // Update Open Graph tags
+    this.updateOpenGraphTags(title, description, path);
+  },
+  
+  updateOpenGraphTags: function(title, description, path) {
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    
+    const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+    const twitterDesc = document.querySelector('meta[property="twitter:description"]');
+    const twitterUrl = document.querySelector('meta[property="twitter:url"]');
+    
+    const fullUrl = 'https://yourwebsite.com' + path;
+    
+    if (ogTitle) ogTitle.setAttribute('content', title + ' | نظام إدارة مصاريف الرحلات');
+    if (ogDesc) ogDesc.setAttribute('content', description);
+    if (ogUrl) ogUrl.setAttribute('content', fullUrl);
+    
+    if (twitterTitle) twitterTitle.setAttribute('content', title + ' | نظام إدارة مصاريف الرحلات');
+    if (twitterDesc) twitterDesc.setAttribute('content', description);
+    if (twitterUrl) twitterUrl.setAttribute('content', fullUrl);
+  },
+  
+  updateStructuredData: function(data) {
+    // Remove existing JSON-LD scripts
+    const existingScripts = document.querySelectorAll('script[type="application/ld+json"]');
+    existingScripts.forEach(script => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    });
+    
+    // Add new JSON-LD script
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
+  }
+};
+
 // التحقق من النماذج
 function validateForm(form) {
   let isValid = true;

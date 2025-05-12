@@ -6,6 +6,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const cors = require('cors');
+const fs = require('fs');
+const { promisify } = require('util');
+const readFile = promisify(fs.readFile);
 require('dotenv').config();
 require('reflect-metadata');
 
@@ -37,6 +40,205 @@ app.use(session({
 }));
 app.use(flash());
 
+// Enhanced SEO Routes middleware - helps search engines crawl the site properly
+// This provides advanced pre-rendered metadata for specific public routes
+app.use(async (req, res, next) => {
+  // Only apply to GET requests
+  if (req.method !== 'GET') {
+    return next();
+  }
+  
+  // Apply to all SEO-important paths
+  const seoRoutes = ['/', '/about', '/contact', '/privacy', '/pricing', '/features', '/faq', '/terms', '/blog'];
+  const reqPath = req.path;
+  
+  // Detect search engine crawlers and social media bots
+  const botPatterns = [
+    'bot', 'crawl', 'spider', 'slurp', 'bingbot', 'googlebot', 
+    'yandex', 'baidu', 'facebookexternalhit', 'twitterbot', 
+    'linkedinbot', 'whatsapp', 'telegrambot', 'skype', 'pinterest'
+  ];
+  
+  const isBot = req.headers['user-agent'] && 
+    botPatterns.some(pattern => req.headers['user-agent'].toLowerCase().includes(pattern));
+  
+  // Apply server-side rendering for bots or when explicitly requested
+  if ((seoRoutes.includes(reqPath) && isBot) || req.query.ssr === 'true') {
+    try {
+      // Read the index.html file
+      const indexPath = path.join(__dirname, '../public/index.html');
+      let content = await readFile(indexPath, 'utf8');
+      
+      // Prepare route-specific SEO data
+      let title, description, keywords, canonicalUrl, ogType, ogImage, structuredData;
+      
+      // Base URL for canonical links and social sharing
+      const baseUrl = process.env.BASE_URL || 'https://yourdomain.com';
+      
+      switch(reqPath) {
+        case '/':
+          title = 'نظام إدارة مصاريف الرحلات | تنظيم وإدارة رحلاتك بسهولة';
+          description = 'نظام إدارة مصاريف الرحلات - طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
+          keywords = 'إدارة الرحلات, تتبع المدفوعات, إدارة المشاريع, مصاريف الرحلات, تنظيم رحلات';
+          canonicalUrl = `${baseUrl}/`;
+          ogType = 'website';
+          ogImage = `${baseUrl}/images/seo/og-default.png`;
+          structuredData = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "نظام إدارة مصاريف الرحلات",
+            "url": baseUrl,
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": `${baseUrl}/search?q={search_term_string}`,
+              "query-input": "required name=search_term_string"
+            }
+          };
+          break;
+        case '/about':
+          title = 'عن النظام | نظام إدارة مصاريف الرحلات';
+          description = 'تعرف على نظام إدارة مصاريف الرحلات وكيف يمكنه مساعدتك في تنظيم وإدارة رحلاتك وتتبع النفقات';
+          keywords = 'عن النظام, إدارة الرحلات, تنظيم رحلات, نبذة عن النظام';
+          canonicalUrl = `${baseUrl}/about`;
+          ogType = 'website';
+          ogImage = `${baseUrl}/images/seo/og-about.png`;
+          structuredData = {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "عن نظام إدارة مصاريف الرحلات",
+            "url": `${baseUrl}/about`,
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "نظام إدارة مصاريف الرحلات",
+              "description": description
+            }
+          };
+          break;
+        case '/contact':
+          title = 'اتصل بنا | نظام إدارة مصاريف الرحلات';
+          description = 'تواصل معنا لمزيد من المعلومات حول نظام إدارة مصاريف الرحلات أو للحصول على الدعم الفني';
+          keywords = 'اتصل بنا, دعم فني, تواصل, استفسارات';
+          canonicalUrl = `${baseUrl}/contact`;
+          ogType = 'website';
+          ogImage = `${baseUrl}/images/seo/og-contact.png`;
+          structuredData = {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "اتصل بنا",
+            "url": `${baseUrl}/contact`,
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "نظام إدارة مصاريف الرحلات",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Customer Support",
+                "email": "support@example.com"
+              }
+            }
+          };
+          break;
+        case '/privacy':
+          title = 'سياسة الخصوصية | نظام إدارة مصاريف الرحلات';
+          description = 'اطلع على سياسة الخصوصية لنظام إدارة مصاريف الرحلات وكيفية حماية بياناتك الشخصية';
+          keywords = 'سياسة الخصوصية, حماية البيانات, أمان المعلومات';
+          canonicalUrl = `${baseUrl}/privacy`;
+          ogType = 'website';
+          ogImage = `${baseUrl}/images/seo/og-policy.png`;
+          structuredData = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "سياسة الخصوصية",
+            "url": `${baseUrl}/privacy`,
+            "mainEntity": {
+              "@type": "Article",
+              "name": "سياسة الخصوصية",
+              "articleBody": "سياسة الخصوصية لنظام إدارة مصاريف الرحلات..."
+            }
+          };
+          break;
+        case '/pricing':
+          title = 'خطط الأسعار | نظام إدارة مصاريف الرحلات';
+          description = 'اطلع على خطط الأسعار المتاحة لنظام إدارة مصاريف الرحلات';
+          keywords = 'خطط الأسعار, الاشتراكات, التكلفة, الدفع';
+          canonicalUrl = `${baseUrl}/pricing`;
+          ogType = 'website';
+          ogImage = `${baseUrl}/images/seo/og-pricing.png`;
+          structuredData = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "خطط الأسعار",
+            "url": `${baseUrl}/pricing`
+          };
+          break;
+        default:
+          // Default SEO data for other routes
+          title = 'نظام إدارة مصاريف الرحلات';
+          description = 'نظام متكامل لإدارة مصاريف الرحلات وتتبع المدفوعات';
+          keywords = 'إدارة الرحلات, تتبع المدفوعات, تنظيم رحلات';
+          canonicalUrl = `${baseUrl}${reqPath}`;
+          ogType = 'website';
+          ogImage = `${baseUrl}/images/seo/og-default.png`;
+          structuredData = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": title,
+            "description": description,
+            "url": canonicalUrl
+          };
+      }
+      
+      // Generate the structured data script tag
+      const structuredDataScript = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`;
+      
+      // Update the HTML content with appropriate meta data
+      content = content
+        .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+        .replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${description}">`)
+        .replace(/<meta name="keywords" content=".*?">/, `<meta name="keywords" content="${keywords}">`);
+      
+      // Add canonical URL if not present
+      if (!content.includes('<link rel="canonical"')) {
+        content = content.replace('</head>', `<link rel="canonical" href="${canonicalUrl}" />\n</head>`);
+      } else {
+        content = content.replace(/<link rel="canonical".*?>/, `<link rel="canonical" href="${canonicalUrl}" />`);
+      }
+      
+      // Add Open Graph and Twitter Card meta tags if not present
+      if (!content.includes('property="og:title"')) {
+        const ogTags = `
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:url" content="${canonicalUrl}" />
+    <meta property="og:type" content="${ogType}" />
+    <meta property="og:image" content="${ogImage}" />
+    <meta property="og:locale" content="ar_SA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:image" content="${ogImage}" />`;
+        
+        content = content.replace('</head>', `${ogTags}\n</head>`);
+      }
+      
+      // Add structured data if not present
+      if (!content.includes('application/ld+json')) {
+        content = content.replace('</head>', `${structuredDataScript}\n</head>`);
+      } else {
+        content = content.replace(/<script type="application\/ld\+json">.*?<\/script>/s, structuredDataScript);
+      }
+      
+      // Send the modified HTML with proper content type
+      res.set('Content-Type', 'text/html');
+      res.send(content);
+    } catch (error) {
+      console.error('Enhanced SEO middleware error:', error);
+      next(); // Fall back to regular route handling
+    }
+  } else {
+    next();
+  }
+});
+
 // Static files
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -59,6 +261,7 @@ initializeDatabase()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
+      console.log('SEO enhancements active - optimized for search engines');
     });
   })
   .catch((error) => {
