@@ -242,6 +242,16 @@ app.use(async (req, res, next) => {
 // Static files
 app.use(express.static(path.join(__dirname, '../public')));
 
+// Google Site Verification route (special handler for SEO verification)
+app.get('/googleVerification/*', (req, res) => {
+  const fileName = req.path.split('/googleVerification/')[1];
+  if (fileName && fileName.startsWith('google') && fileName.endsWith('.html')) {
+    return res.sendFile(path.join(__dirname, '../public', fileName));
+  } else {
+    return res.status(404).send('File not found');
+  }
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', protect, projectRoutes);
