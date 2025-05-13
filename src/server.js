@@ -258,7 +258,7 @@ app.get('/googleVerification/*', (req, res) => {
 });
 
 // Explicit route for sitemap.xml to ensure it's properly served
-app.get('/sitemap.xml', (req, res) => {
+app.get('/sitemap', (req, res) => {
   res.header('Content-Type', 'application/xml');
   return res.sendFile(path.join(__dirname, '../public/sitemap.xml'));
 });
