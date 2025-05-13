@@ -196,6 +196,11 @@ app.use(async (req, res, next) => {
         .replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${description}">`)
         .replace(/<meta name="keywords" content=".*?">/, `<meta name="keywords" content="${keywords}">`);
       
+      // Add Google site verification meta tag if not present
+      if (!content.includes('name="google-site-verification"')) {
+        content = content.replace('</head>', `<meta name="google-site-verification" content="Na51kZpvyjO1XGG6CyF8EyQGKYujx2MBKtdoWGFZIJw" />\n</head>`);
+      }
+      
       // Add canonical URL if not present
       if (!content.includes('<link rel="canonical"')) {
         content = content.replace('</head>', `<link rel="canonical" href="${canonicalUrl}" />\n</head>`);
