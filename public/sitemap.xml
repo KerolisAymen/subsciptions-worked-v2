@@ -6,55 +6,55 @@
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://attendance-qn01.onrender/</loc>
+    <loc>https://attendance-qn01.onrender.com/</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/about</loc>
+    <loc>https://attendance-qn01.onrender.com/about</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/pricing</loc>
+    <loc>https://attendance-qn01.onrender.com/pricing</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/contact</loc>
+    <loc>https://attendance-qn01.onrender.com/contact</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/features</loc>
+    <loc>https://attendance-qn01.onrender.com/features</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/faq</loc>
+    <loc>https://attendance-qn01.onrender.com/faq</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/terms</loc>
+    <loc>https://attendance-qn01.onrender.com/terms</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/privacy</loc>
+    <loc>https://attendance-qn01.onrender.com/privacy</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://attendance-qn01.onrender/blog</loc>
+    <loc>https://attendance-qn01.onrender.com/blog</loc>
     <lastmod>2025-05-12T22:30:22.717Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>

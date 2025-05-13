@@ -11,7 +11,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Configuration
-const BASE_URL = process.env.BASE_URL || 'https://yourdomain.com';
+const BASE_URL = process.env.BASE_URL || 'https://attendance-qn01.onrender.com';
 const OUTPUT_FILE = path.join(__dirname, '../public/sitemap.xml');
 
 // Pages/routes to include in the sitemap
