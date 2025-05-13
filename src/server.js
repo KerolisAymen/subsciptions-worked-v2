@@ -257,18 +257,6 @@ app.get('/googleVerification/*', (req, res) => {
   }
 });
 
-// Explicit route for sitemap.xml to ensure it's properly served
-app.get('/sitemap.xml', (req, res) => {
-  res.header('Content-Type', 'application/xml');
-  return res.sendFile(path.join(__dirname, '../public/sitemap.xml'));
-});
-
-// Explicit route for robots.txt to ensure it's properly served
-app.get('/robots.txt', (req, res) => {
-  res.header('Content-Type', 'text/plain');
-  return res.sendFile(path.join(__dirname, '../public/robots.txt'));
-});
-
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', protect, projectRoutes);
