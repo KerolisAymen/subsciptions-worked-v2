@@ -4,14 +4,13 @@ Disallow: /admin/
 Disallow: /login
 Disallow: /signup
 Disallow: /projects
-Disallow: /project/
-Disallow: /trip/
+Disallow: /trips
 Disallow: /verify-email/
 Disallow: /forgot-password
 Disallow: /reset-password/
 
 # Sitemap location
-Sitemap: https://yourwebsite.com/sitemap.xml
+Sitemap: https://attendance-qn01.onrender.com/sitemap.xml
 
 # Crawl-delay directive to prevent overwhelming the server
-Crawl-delay: 10
+Crawl-delay: 0

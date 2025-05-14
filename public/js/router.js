@@ -7,8 +7,8 @@ class Router {
       '/login': this.renderLoginPage.bind(this),
       '/signup': this.renderSignupPage.bind(this),
       '/projects': this.renderProjectsPage.bind(this),
-      '/project/:id': this.renderProjectDashboard.bind(this),
-      '/trip/:id': this.renderTripDetails.bind(this),
+      '/projects/:id': this.renderProjectDashboard.bind(this),
+      '/trips/:id': this.renderTripDetails.bind(this),
       '/about': this.renderAboutPage.bind(this),
       '/contact': this.renderContactPage.bind(this),
       '/privacy': this.renderPrivacyPage.bind(this),
@@ -102,12 +102,12 @@ class Router {
         title = 'مشاريعي';
         description = 'إدارة مشاريعك ورحلاتك في نظام إدارة مصاريف الرحلات';
         break;
-      case path.startsWith('/project/'):
+      case path.startsWith('/projects/'):
         const projectId = path.split('/')[2];
         title = `تفاصيل المشروع ${projectId}`;
         description = `عرض وإدارة تفاصيل المشروع ${projectId} في نظام إدارة مصاريف الرحلات`;
         break;
-      case path.startsWith('/trip/'):
+      case path.startsWith('/trips/'):
         const tripId = path.split('/')[2];
         title = `تفاصيل الرحلة ${tripId}`;
         description = `عرض وإدارة تفاصيل الرحلة ${tripId}، المشاركين والمدفوعات في نظام إدارة مصاريف الرحلات`;
@@ -211,12 +211,12 @@ class Router {
     } else if (path.match(/^\/verify-email\/[A-Za-z0-9-_]+$/)) {
       const token = path.split('/')[2];
       this.renderVerifyEmailPage({ token });
-    } else if (path.match(/^\/project\/[a-zA-Z0-9-]+$/)) {
+    } else if (path.match(/^\/projects\/[a-zA-Z0-9-]+$/)) {
       // Updated to match UUID and other ID formats
       const id = path.split('/')[2];
       console.log('Rendering project dashboard for ID:', id);
       this.renderProjectDashboard({ id });
-    } else if (path.match(/^\/trip\/[a-zA-Z0-9-]+$/)) {
+    } else if (path.match(/^\/trips\/[a-zA-Z0-9-]+$/)) {
       // Updated to match UUID and other ID formats
       const id = path.split('/')[2];
       console.log('Rendering trip details for ID:', id);
@@ -424,7 +424,7 @@ class Router {
                   <p class="card-text text-muted small flex-grow-1">${project.description || i18n.t('projects.noDescription')}</p>
                 </div>
                 <div class="card-footer bg-light border-0 d-flex justify-content-between align-items-center">
-                  <a href="/project/${project.id}" class="btn btn-primary btn-sm px-3"  data-bs-placement="top" title="${i18n.t('projects.viewProject')}">
+                  <a href="/projects/${project.id}" class="btn btn-primary btn-sm px-3"  data-bs-placement="top" title="${i18n.t('projects.viewProject')}">
                     <i class="bi bi-box-arrow-in-up-right"></i> ${i18n.t('projects.viewProject')}
                   </a>
                   <div class="d-flex gap-1">
@@ -540,7 +540,7 @@ class Router {
           }
 
           // Navigate to the new project dashboard
-          this.navigate(`/project/${response.data.project.id}`);
+          this.navigate(`/projects/${response.data.project.id}`);
           showToast(i18n.t('common.success'), i18n.t('projects.projectCreated'));
 
         } catch (error) {
@@ -825,7 +825,7 @@ class Router {
           recentTripsContainer.innerHTML += `
             <li class="list-group-item d-flex justify-content بين align-items-center">
               <span class="table-number me-2">${idx + 1}</span>
-              <a href="/trip/${trip.id}" class="text-decoration-none">${trip.name}</a>
+              <a href="/trips/${trip.id}" class="text-decoration-none">${trip.name}</a>
               <span class="badge bg-primary rounded-pill">${trip.percentComplete.toFixed(0)}%</span>
             </li>
           `;
@@ -931,7 +931,7 @@ class Router {
                 </td>
                 <td>
                   <div class="btn-group btn-group-sm">
-                    <a href="/trip/${trip.id}" class="btn btn-primary">${i18n.t('common.view')}</a>
+                    <a href="/trips/${trip.id}" class="btn btn-primary">${i18n.t('common.view')}</a>
                     ${['owner', 'admin'].includes(userRole) ? `
                       <button class="btn btn-outline-secondary btn-edit-trip" data-id="${trip.id}">${i18n.t('common.edit')}</button>
                       <button class="btn btn-outline-danger btn-delete-trip" data-id="${trip.id}">${i18n.t('common.delete')}</button>
@@ -1351,7 +1351,7 @@ class Router {
           modal.hide();
           
           // Navigate to trip
-          this.navigate(`/trip/${response.data.trip.id}`);
+          this.navigate(`/trips/${response.data.trip.id}`);
         } catch (error) {
           console.error('Create trip error:', error);
         } finally {
@@ -1445,7 +1445,7 @@ class Router {
       // Set up project link
       const projectLink = document.getElementById('project-link');
       if (projectLink) {
-        projectLink.href = `/project/${trip.projectId}`;
+        projectLink.href = `/projects/${trip.projectId}`;
         projectLink.textContent = 'العودة إلى المشروع';
       }
       
@@ -2642,7 +2642,7 @@ class Router {
           this.initPaymentsTab(tripId, userRole);
           
           // Refresh the trip details page to update reports
-          this.navigate(`/trip/${tripId}`);
+          this.navigate(`/trips/${tripId}`);
           
           showToast('Success', 'Payment recorded successfully');
         } catch (error) {
@@ -2823,7 +2823,7 @@ class Router {
                 <td>${project.tripCount || 0}</td>
                 <td>
                   <div class="btn-group btn-group-sm">
-                    <a href="/project/${project.id}" class="btn btn-primary">عرض</a>
+                    <a href="/projects/${project.id}" class="btn btn-primary">عرض</a>
                   </div>
                 </td>
               </tr>

@@ -249,7 +249,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Google Site Verification route (special handler for SEO verification)
 app.get('/googleVerification/*', (req, res) => {
-  const fileName = req.path.split('/googleVerification/')[1];
+  const fileName ="google8bb20b8d1864f099.html"
   if (fileName && fileName.startsWith('google') && fileName.endsWith('.html')) {
     return res.sendFile(path.join(__dirname, '../public', fileName));
   } else {

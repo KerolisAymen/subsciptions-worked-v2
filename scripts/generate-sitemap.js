@@ -19,10 +19,7 @@ const OUTPUT_FILE = path.join(__dirname, '../public/sitemap.xml');
 const pages = [
   { url: '/', priority: '1.0', changeFreq: 'daily' },
   { url: '/about', priority: '0.8', changeFreq: 'monthly' },
-  { url: '/pricing', priority: '0.9', changeFreq: 'weekly' },
   { url: '/contact', priority: '0.8', changeFreq: 'monthly' },
-  { url: '/features', priority: '0.9', changeFreq: 'weekly' },
-  { url: '/faq', priority: '0.7', changeFreq: 'monthly' },
   { url: '/terms', priority: '0.6', changeFreq: 'yearly' },
   { url: '/privacy', priority: '0.6', changeFreq: 'yearly' },
   { url: '/blog', priority: '0.9', changeFreq: 'daily' }
