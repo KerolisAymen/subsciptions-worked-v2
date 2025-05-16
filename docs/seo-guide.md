@@ -1,6 +1,6 @@
 # SEO Implementation and Maintenance Guide
 
-This document provides comprehensive information on the SEO implementation for your subscription service website and guidelines for maintaining optimal search engine visibility.
+This document provides comprehensive information on the SEO implementation for مُحصل (Muhassil) — منصة متكاملة لإدارة وتحصيل المدفوعات وتجميع الاشتراكات — and guidelines for maintaining optimal search engine visibility for payment and subscription collection services.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ This document provides comprehensive information on the SEO implementation for y
 
 ## Overview
 
-The website has been optimized for search engines with the following features:
+The مُحصل website is optimized for search engines with the following features:
 - Enhanced meta tags for better search engine visibility
 - Structured data for rich snippets in search results
 - Server-side rendering for crawler-friendly content
@@ -21,6 +21,11 @@ The website has been optimized for search engines with the following features:
 - Social media sharing optimization
 - Image optimization for better page loading
 - Google Search Console and Analytics integration
+
+**Branding:**
+- Site name: مُحصل (Muhassil)
+- Description: منصة متكاملة لإدارة وتحصيل المدفوعات وتجميع الاشتراكات (subscription collection) بكل سهولة وفعالية
+- Scope: General payment and subscription collection for projects, groups, and organizations (not limited to trips)
 
 ## SEO Assets
 
@@ -35,20 +40,20 @@ The website has been optimized for search engines with the following features:
 ### Meta Tags
 
 The website implements the following meta tags:
-- Title: Page-specific titles with brand name
-- Description: Concise page descriptions
-- Keywords: Relevant keywords for each page
+- Title: Page-specific titles with brand name (مُحصل)
+- Description: Concise page descriptions including "تجميع الاشتراكات" and payment collection
+- Keywords: Relevant keywords for payment, subscription, and collection
 - Canonical URLs: Prevent duplicate content issues
-- Open Graph: For Facebook, LinkedIn, etc.
-- Twitter Cards: For Twitter sharing
+- Open Graph: For Facebook, LinkedIn, etc. (using مُحصل branding)
+- Twitter Cards: For Twitter sharing (using مُحصل branding)
 - Viewport: Mobile responsiveness
 - Language: Proper language declaration
 
 ### Structured Data
 
 The website uses JSON-LD structured data for:
-- Website information
-- Organization details
+- Website information (مُحصل)
+- Organization details (مُحصل)
 - Breadcrumbs navigation
 - Page-specific content types
 

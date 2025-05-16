@@ -66,63 +66,65 @@ class Router {
   // New method to update SEO metadata for the current page
   updateSEOMetadata() {
     const path = window.location.pathname;
-    let title = 'نظام إدارة مصاريف الرحلات';
-    let description = 'طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
-    
+    let title = 'مُحصل';
+    let description = 'منصة متكاملة لإدارة وتحصيل المدفوعات وتجميع الاشتراكات بكل سهولة وفعالية';
     // Set page-specific metadata
     switch (true) {
       case path === '/':
         title = 'الرئيسية';
-        description = 'نظام إدارة مصاريف الرحلات - طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
-        this.hideBreadcrumbs(); // Hide breadcrumbs on home page
+        description = 'مُحصل - منصة متكاملة لإدارة وتحصيل المدفوعات وتجميع الاشتراكات بكل سهولة وفعالية';
+        this.hideBreadcrumbs();
         break;
       case path === '/login':
         title = 'تسجيل الدخول';
-        description = 'تسجيل الدخول إلى حسابك في نظام إدارة مصاريف الرحلات';
-        this.hideBreadcrumbs(); // Hide breadcrumbs on login page
+        description = 'تسجيل الدخول إلى حسابك في منصة مُحصل';
+        this.hideBreadcrumbs();
         break;
       case path === '/signup':
         title = 'إنشاء حساب';
-        description = 'إنشاء حساب جديد في نظام إدارة مصاريف الرحلات للاستفادة من خدماتنا';
-        this.hideBreadcrumbs(); // Hide breadcrumbs on signup page
+        description = 'إنشاء حساب جديد في منصة مُحصل للاستفادة من خدماتنا';
+        this.hideBreadcrumbs();
         break;
       case path === '/about':
-        title = 'عن النظام';
-        description = 'تعرف على المزيد عن نظام إدارة مصاريف الرحلات وكيفية عمله';
+        title = 'عن مُحصل';
+        description = 'تعرف على المزيد عن مُحصل وكيفية جمع المدفوعات والاشتراكات بسهولة.';
         break;
       case path === '/contact':
         title = 'اتصل بنا';
-        description = 'تواصل مع فريق دعم نظام إدارة مصاريف الرحلات للاستفسارات والمساعدة';
+        description = 'تواصل مع فريق دعم مُحصل للاستفسارات والمساعدة.';
         break;
       case path === '/privacy':
         title = 'سياسة الخصوصية';
-        description = 'سياسة الخصوصية وشروط الاستخدام لنظام إدارة مصاريف الرحلات';
+        description = 'سياسة الخصوصية وشروط الاستخدام لمنصة مُحصل.';
         break;
       case path.startsWith('/projects'):
         title = 'مشاريعي';
-        description = 'إدارة مشاريعك ورحلاتك في نظام إدارة مصاريف الرحلات';
+        description = 'إدارة مشاريعك وجمع المدفوعات والاشتراكات في مُحصل.';
+        break;
+      case path.startsWith('/subscriptions'):
+        title = 'الاشتراكات';
+        description = 'إدارة وتجميع الاشتراكات والمدفوعات بسهولة عبر مُحصل.';
         break;
       case path.startsWith('/projects/'):
         const projectId = path.split('/')[2];
         title = `تفاصيل المشروع ${projectId}`;
-        description = `عرض وإدارة تفاصيل المشروع ${projectId} في نظام إدارة مصاريف الرحلات`;
+        description = `عرض وإدارة تفاصيل المشروع ${projectId} وجمع المدفوعات والاشتراكات في مُحصل.`;
         break;
-      case path.startsWith('/trips/'):
-        const tripId = path.split('/')[2];
-        title = `تفاصيل الرحلة ${tripId}`;
-        description = `عرض وإدارة تفاصيل الرحلة ${tripId}، المشاركين والمدفوعات في نظام إدارة مصاريف الرحلات`;
+      case path.startsWith('/collections/'):
+        const collectionId = path.split('/')[2];
+        title = `تفاصيل التحصيل ${collectionId}`;
+        description = `عرض تفاصيل التحصيل والمدفوعات والاشتراكات في مُحصل.`;
         break;
       default:
-        title = 'نظام إدارة مصاريف الرحلات';
-        description = 'طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
+        title = 'مُحصل';
+        description = 'منصة متكاملة لإدارة وتحصيل المدفوعات وتجميع الاشتراكات.';
     }
-    
     // Use SEO utility functions to update metadata
     if (window.SEO && typeof window.SEO.updateMetaTags === 'function') {
       window.SEO.updateMetaTags(title, description, path);
     } else {
       // Fallback if SEO.js is not loaded
-      document.title = title + ' | نظام إدارة مصاريف الرحلات';
+      document.title = title + ' | مُحصل';
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute('content', description);

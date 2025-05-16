@@ -78,9 +78,8 @@ function formatDate(dateString) {
 
 // SEO Utility Functions
 const SEO = {
-  updateMetaTags: function(title, description, path) {
-    // Update document title
-    document.title = title + ' | نظام إدارة مصاريف الرحلات';
+  updateMetaTags: function(title, description, path) {    // Update document title
+    document.title = title + ' | مُحصل';
     
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -108,12 +107,11 @@ const SEO = {
     const twitterUrl = document.querySelector('meta[property="twitter:url"]');
     
     const fullUrl = 'https://yourwebsite.com' + path;
-    
-    if (ogTitle) ogTitle.setAttribute('content', title + ' | نظام إدارة مصاريف الرحلات');
+      if (ogTitle) ogTitle.setAttribute('content', title + ' | مُحصل');
     if (ogDesc) ogDesc.setAttribute('content', description);
     if (ogUrl) ogUrl.setAttribute('content', fullUrl);
     
-    if (twitterTitle) twitterTitle.setAttribute('content', title + ' | نظام إدارة مصاريف الرحلات');
+    if (twitterTitle) twitterTitle.setAttribute('content', title + ' | مُحصل');
     if (twitterDesc) twitterDesc.setAttribute('content', description);
     if (twitterUrl) twitterUrl.setAttribute('content', fullUrl);
   },

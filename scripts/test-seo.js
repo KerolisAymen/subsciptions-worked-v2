@@ -1,9 +1,9 @@
 /**
  * SEO Testing and Validation Script
  * 
- * This script checks and validates SEO implementations across the site
- * - Verifies meta tags
- * - Checks structured data
+ * This script checks and validates SEO implementations across the مُحصل (Muhassil) site
+ * - Verifies meta tags for مُحصل and تجميع الاشتراكات (subscription collection)
+ * - Checks structured data for مُحصل branding and payment/subscription collection
  * - Validates robots.txt
  * - Tests sitemap.xml
  * - Evaluates page speed factors
@@ -21,7 +21,7 @@ const { JSDOM } = require('jsdom');
 // Configuration
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const PUBLIC_DIR = path.join(__dirname, '../public');
-const ROUTES_TO_CHECK = ['/', '/about', '/contact', '/privacy']; // Updated to match actual routes
+const ROUTES_TO_CHECK = ['/', '/about', '/contact', '/privacy']; // Updated to match actual routes for مُحصل
 const REQUIRED_META_TAGS = ['title', 'description', 'viewport', 'robots', 'keywords'];
 const REQUIRED_OG_TAGS = ['title', 'description', 'url', 'image', 'type'];
 

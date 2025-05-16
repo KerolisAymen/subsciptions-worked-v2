@@ -76,17 +76,15 @@ app.use(async (req, res, next) => {
       const baseUrl = process.env.BASE_URL || 'https://yourdomain.com';
       
       switch(reqPath) {
-        case '/':
-          title = 'نظام إدارة مصاريف الرحلات | تنظيم وإدارة رحلاتك بسهولة';
-          description = 'نظام إدارة مصاريف الرحلات - طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين';
-          keywords = 'إدارة الرحلات, تتبع المدفوعات, إدارة المشاريع, مصاريف الرحلات, تنظيم رحلات';
+        case '/':          title = 'مُحصل | منصة متكاملة لإدارة وتحصيل المدفوعات';
+          description = 'مُحصل - منصة متكاملة لإدارة وتحصيل المدفوعات بكل سهولة وفعالية';
+          keywords = 'تحصيل المدفوعات, إدارة المشاريع, إدارة التحصيل, تنظيم المدفوعات, إدارة المشاركين, إدارة النفقات, تحصيل الأموال';
           canonicalUrl = `${baseUrl}/`;
           ogType = 'website';
-          ogImage = `${baseUrl}/images/seo/og-default.png`;
-          structuredData = {
+          ogImage = `${baseUrl}/images/seo/og-default.png`;          structuredData = {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "نظام إدارة مصاريف الرحلات",
+            "name": "مُحصل",
             "url": baseUrl,
             "potentialAction": {
               "@type": "SearchAction",
@@ -94,29 +92,27 @@ app.use(async (req, res, next) => {
               "query-input": "required name=search_term_string"
             }
           };
-          break;
-        case '/about':
-          title = 'عن النظام | نظام إدارة مصاريف الرحلات';
-          description = 'تعرف على نظام إدارة مصاريف الرحلات وكيف يمكنه مساعدتك في تنظيم وإدارة رحلاتك وتتبع النفقات';
-          keywords = 'عن النظام, إدارة الرحلات, تنظيم رحلات, نبذة عن النظام';
+          break;        case '/about':
+          title = 'عن النظام | مُحصل';
+          description = 'تعرف على منصة مُحصل وكيف يمكنها مساعدتك في إدارة وتحصيل المدفوعات بكل سهولة وفعالية';
+          keywords = 'عن النظام, تحصيل المدفوعات, إدارة المشاريع, نبذة عن النظام, تنظيم المدفوعات';
           canonicalUrl = `${baseUrl}/about`;
           ogType = 'website';
           ogImage = `${baseUrl}/images/seo/og-about.png`;
           structuredData = {
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            "name": "عن نظام إدارة مصاريف الرحلات",
+            "name": "عن منصة مُحصل",
             "url": `${baseUrl}/about`,
             "mainEntity": {
               "@type": "Organization",
-              "name": "نظام إدارة مصاريف الرحلات",
+              "name": "مُحصل",
               "description": description
             }
           };
-          break;
-        case '/contact':
-          title = 'اتصل بنا | نظام إدارة مصاريف الرحلات';
-          description = 'تواصل معنا لمزيد من المعلومات حول نظام إدارة مصاريف الرحلات أو للحصول على الدعم الفني';
+          break;        case '/contact':
+          title = 'اتصل بنا | مُحصل';
+          description = 'تواصل معنا لمزيد من المعلومات حول منصة مُحصل أو للحصول على الدعم الفني';
           keywords = 'اتصل بنا, دعم فني, تواصل, استفسارات';
           canonicalUrl = `${baseUrl}/contact`;
           ogType = 'website';
@@ -128,7 +124,7 @@ app.use(async (req, res, next) => {
             "url": `${baseUrl}/contact`,
             "mainEntity": {
               "@type": "Organization",
-              "name": "نظام إدارة مصاريف الرحلات",
+              "name": "مُحصل",
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "Customer Support",
@@ -136,10 +132,9 @@ app.use(async (req, res, next) => {
               }
             }
           };
-          break;
-        case '/privacy':
-          title = 'سياسة الخصوصية | نظام إدارة مصاريف الرحلات';
-          description = 'اطلع على سياسة الخصوصية لنظام إدارة مصاريف الرحلات وكيفية حماية بياناتك الشخصية';
+          break;        case '/privacy':
+          title = 'سياسة الخصوصية | مُحصل';
+          description = 'اطلع على سياسة الخصوصية لمنصة مُحصل وكيفية حماية بياناتك الشخصية';
           keywords = 'سياسة الخصوصية, حماية البيانات, أمان المعلومات';
           canonicalUrl = `${baseUrl}/privacy`;
           ogType = 'website';
@@ -152,13 +147,12 @@ app.use(async (req, res, next) => {
             "mainEntity": {
               "@type": "Article",
               "name": "سياسة الخصوصية",
-              "articleBody": "سياسة الخصوصية لنظام إدارة مصاريف الرحلات..."
+              "articleBody": "سياسة الخصوصية لمنصة مُحصل..."
             }
           };
-          break;
-        case '/pricing':
-          title = 'خطط الأسعار | نظام إدارة مصاريف الرحلات';
-          description = 'اطلع على خطط الأسعار المتاحة لنظام إدارة مصاريف الرحلات';
+          break;        case '/pricing':
+          title = 'خطط الأسعار | مُحصل';
+          description = 'اطلع على خطط الأسعار المتاحة لمنصة مُحصل';
           keywords = 'خطط الأسعار, الاشتراكات, التكلفة, الدفع';
           canonicalUrl = `${baseUrl}/pricing`;
           ogType = 'website';
@@ -169,12 +163,11 @@ app.use(async (req, res, next) => {
             "name": "خطط الأسعار",
             "url": `${baseUrl}/pricing`
           };
-          break;
-        default:
+          break;        default:
           // Default SEO data for other routes
-          title = 'نظام إدارة مصاريف الرحلات';
-          description = 'نظام متكامل لإدارة مصاريف الرحلات وتتبع المدفوعات';
-          keywords = 'إدارة الرحلات, تتبع المدفوعات, تنظيم رحلات';
+          title = 'مُحصل';
+          description = 'منصة متكاملة لإدارة وتحصيل المدفوعات بكل سهولة وفعالية';
+          keywords = 'تحصيل المدفوعات, إدارة المشاريع, إدارة التحصيل, تنظيم المدفوعات';
           canonicalUrl = `${baseUrl}${reqPath}`;
           ogType = 'website';
           ogImage = `${baseUrl}/images/seo/og-default.png`;

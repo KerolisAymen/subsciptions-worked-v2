@@ -8,9 +8,8 @@
  * @param {string} [keywords] - Optional keywords specific to the page
  * @param {string} [imageUrl] - Optional image URL for social sharing
  */
-function updateMetaTags(title, description, path, keywords, imageUrl) {
-  // Update document title - limited to 60 characters for SEO best practices
-  const siteTitle = 'نظام إدارة مصاريف الرحلات';
+function updateMetaTags(title, description, path, keywords, imageUrl) {  // Update document title - limited to 60 characters for SEO best practices
+  const siteTitle = 'مُحصل';
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
   document.title = fullTitle.substring(0, 60);
   
@@ -49,10 +48,10 @@ function updateMetaTags(title, description, path, keywords, imageUrl) {
  * @param {string} [imageUrl] - Optional image URL
  */
 function updateOpenGraphTags(title, description, path, imageUrl) {
-  const siteTitle = 'نظام إدارة مصاريف الرحلات';
+  const siteTitle = 'مُحصل';
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
   const fullUrl = 'https://yourwebsite.com' + path;
-  const defaultImage = 'https://yourwebsite.com/images/trip-management-system.jpg';
+  const defaultImage = 'https://yourwebsite.com/images/muhassil-payment-system.jpg';
   const image = imageUrl || defaultImage;
   
   // Update Open Graph tags
@@ -71,7 +70,7 @@ function updateOpenGraphTags(title, description, path, imageUrl) {
   const twitterDesc = document.querySelector('meta[property="twitter:description"]');
   const twitterUrl = document.querySelector('meta[property="twitter:url"]');
   const twitterImage = document.querySelector('meta[property="twitter:image"]');
-    if (twitterTitle) twitterTitle.setAttribute('content', fullTitle);
+  if (twitterTitle) twitterTitle.setAttribute('content', fullTitle);
   if (twitterDesc && description) twitterDesc.setAttribute('content', description.substring(0, 160));
   if (twitterUrl) twitterUrl.setAttribute('content', fullUrl);
   if (twitterImage) twitterImage.setAttribute('content', image);
@@ -98,9 +97,9 @@ function generateStructuredData(title, description, path) {
       structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        'name': 'نظام إدارة مصاريف الرحلات',
+        'name': 'مُحصل',
         'url': 'https://yourwebsite.com/',
-        'description': description || 'نظام إدارة مصاريف الرحلات - طريقة بسيطة لإدارة نفقات الرحلات وتتبع المدفوعات من المشاركين',
+        'description': description || 'مُحصل - منصة متكاملة لإدارة وتحصيل المدفوعات وتسهيل تجميع الاشتراكات والمدفوعات الجماعية بكل سهولة وفعالية',
         'potentialAction': {
           '@type': 'SearchAction',
           'target': 'https://yourwebsite.com/search?q={search_term_string}',
@@ -114,10 +113,10 @@ function generateStructuredData(title, description, path) {
       structuredData = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        'name': 'نظام إدارة مصاريف الرحلات',
+        'name': 'مُحصل',
         'url': fullUrl,
         'logo': 'https://yourwebsite.com/images/logo.png',
-        'description': description || 'معلومات عن نظام إدارة مصاريف الرحلات'
+        'description': description || 'معلومات عن مُحصل - منصة متكاملة لإدارة وتحصيل المدفوعات'
       };
       break;
       
@@ -127,7 +126,7 @@ function generateStructuredData(title, description, path) {
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
         'name': title || 'اتصل بنا',
-        'description': description || 'صفحة الاتصال لنظام إدارة مصاريف الرحلات',
+        'description': description || 'صفحة الاتصال لمنصة مُحصل لإدارة وتحصيل المدفوعات',
         'url': fullUrl
       };
       break;
@@ -137,10 +136,10 @@ function generateStructuredData(title, description, path) {
       structuredData = {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
-        'name': title || 'مشروع في نظام إدارة مصاريف الرحلات',
+        'name': title || 'مشروع في منصة مُحصل',
         'applicationCategory': 'BusinessApplication',
         'operatingSystem': 'Web',
-        'description': description || 'مشروع في نظام إدارة مصاريف الرحلات'
+        'description': description || 'مشروع في منصة مُحصل لإدارة وتحصيل المدفوعات'
       };
       break;
       
@@ -149,8 +148,8 @@ function generateStructuredData(title, description, path) {
       structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        'name': title || 'نظام إدارة مصاريف الرحلات',
-        'description': description || 'نظام إدارة مصاريف الرحلات',
+        'name': title || 'مُحصل',
+        'description': description || 'مُحصل - منصة متكاملة لإدارة وتحصيل المدفوعات',
         'url': fullUrl
       };
   }
