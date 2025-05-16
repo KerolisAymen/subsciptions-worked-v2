@@ -209,7 +209,7 @@ app.use(async (req, res, next) => {
     <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:type" content="${ogType}" />
     <meta property="og:image" content="${ogImage}" />
-    <meta property="og:locale" content="ar_SA" />
+    <meta property="og:locale" content="ar_EG" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
