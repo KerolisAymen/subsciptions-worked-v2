@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // تحسين التنقل في الأجهزة المحمولة
   const navbarToggler = document.querySelector('.navbar-toggler');
   const navbarNav = document.getElementById('navbarNav');
-    if (navbarToggler && navbarNav) {
+  if (navbarToggler && navbarNav) {
     // إغلاق القائمة عند النقر على أي رابط في الأجهزة المحمولة (باستثناء القائمة المنسدلة للمستخدم)
     navbarNav.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(link => {
       link.addEventListener('click', () => {
@@ -31,11 +31,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // حدث خاص للقائمة المنسدلة للمستخدم
-    const userDropdownToggle = document.getElementById('userDropdown');
+    const userDropdownToggle = document.querySelector('.nav-link.dropdown-toggle');
     if (userDropdownToggle) {
       userDropdownToggle.addEventListener('click', (e) => {
         // منع الفقاعة (bubbling) لتجنب إغلاق القائمة المنسدلة
         e.stopPropagation();
+      });
+    }
+    
+    // التأكد من أن زر تسجيل الخروج يغلق القائمة 
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        if (window.innerWidth < 992 && navbarNav.classList.contains('show')) {
+          // إغلاق القائمة بعد تسجيل الخروج
+          navbarToggler.click();
+        }
       });
     }
   }
