@@ -20,16 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
   // تحسين التنقل في الأجهزة المحمولة
   const navbarToggler = document.querySelector('.navbar-toggler');
   const navbarNav = document.getElementById('navbarNav');
-  
-  if (navbarToggler && navbarNav) {
-    // إغلاق القائمة عند النقر على أي رابط في الأجهزة المحمولة
-    navbarNav.querySelectorAll('.nav-link').forEach(link => {
+    if (navbarToggler && navbarNav) {
+    // إغلاق القائمة عند النقر على أي رابط في الأجهزة المحمولة (باستثناء القائمة المنسدلة للمستخدم)
+    navbarNav.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth < 992 && navbarNav.classList.contains('show')) {
           navbarToggler.click();
         }
       });
     });
+    
+    // حدث خاص للقائمة المنسدلة للمستخدم
+    const userDropdownToggle = document.getElementById('userDropdown');
+    if (userDropdownToggle) {
+      userDropdownToggle.addEventListener('click', (e) => {
+        // منع الفقاعة (bubbling) لتجنب إغلاق القائمة المنسدلة
+        e.stopPropagation();
+      });
+    }
   }
   
   // ضبط حجم الجداول للشاشات الصغيرة
