@@ -2042,6 +2042,8 @@ class Router {
             </td>
             <td>${participant.createdByUser ? participant.createdByUser.name : '-'}</td>
             <td>${participant.updatedByUser ? participant.updatedByUser.name : '-'}</td>
+            <td>${participant.createdAt ? i18n.formatDate(participant.createdAt) : '-'}</td>
+            <td>${participant.updatedAt ? i18n.formatDate(participant.updatedAt) : '-'}</td>
             <td>
               <div class="btn-group btn-group-sm">
                 <button class="btn btn-primary btn-view-participant" data-id="${participant.id}">${i18n.t('common.view')}</button>
