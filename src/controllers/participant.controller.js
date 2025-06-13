@@ -129,12 +129,13 @@ exports.getTripParticipants = async (req, res) => {
 exports.getParticipant = async (req, res) => {
   try {
     const participantRepository = AppDataSource.getRepository(Participant);
-    
-    // Get participant with payments
+      // Get participant with payments
     const participant = await participantRepository
       .createQueryBuilder('participant')
       .leftJoinAndSelect('participant.payments', 'payment')
       .leftJoinAndSelect('payment.collector', 'collector')
+      .leftJoinAndSelect('participant.createdByUser', 'createdByUser')
+      .leftJoinAndSelect('participant.updatedByUser', 'updatedByUser')
       .where('participant.id = :id', { id: req.params.participantId })
       .getOne();
     
@@ -167,15 +168,20 @@ exports.getParticipant = async (req, res) => {
         name: payment.collector.name
       }
     }));
-    
-    res.status(200).json({
+      res.status(200).json({
       status: 'success',
       data: {
         participant: {
           ...participant,
           payments: formattedPayments,
           totalPaid,
-          balance
+          balance,
+          createdByUser: participant.createdByUser
+            ? { id: participant.createdByUser.id, name: participant.createdByUser.name }
+            : null,
+          updatedByUser: participant.updatedByUser
+            ? { id: participant.updatedByUser.id, name: participant.updatedByUser.name }
+            : null
         }
       }
     });
